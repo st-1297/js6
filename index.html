@@ -21,9 +21,10 @@
             </div>
         </div>
         <script>
-            var start;  // 開始時間
+            var start;      // 開始時間
+            var timer_id;   // タイマーID
 
-            // ゼロを追加する
+            // ゼロを追加する関数定義
             var addZero = function (value) {
                 if (value < 10) {
                     value = '0' + value;
@@ -32,9 +33,27 @@
             };
 
             document.getElementById('start_stop').addEventListener('click', function(){
-                start = new Date();
                 
-                setInterval(goTimer, 10);
+                if (this.innerHTML === 'START') {
+                    // 開始時刻を取得
+                    start = new Date();         
+                    // 経過時間計算
+                    timer_id = setInterval(goTimer, 10);   
+                    // STOPボタンにする
+                    this.innerHTML = 'STOP';
+                    this.classList.remove('btn-primary');
+                    this.classList.add('btn-danger'); 
+                
+                } else {
+                    // タイマーストップ
+                    clearInterval(timer_id);
+
+                    // STARTボタンにする
+                    this.innerHTML = 'START';
+                    this.classList.remove('btn-danger');
+                    this.classList.add('btn-primary');
+                }
+                
             });
 
             // タイマーの処理
