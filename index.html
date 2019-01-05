@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>TIMER</title>
+
+        <!-- ST Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <!-- ED Bootstrap CSS -->
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <p id="timer">00:00:00</p>
+            <div>
+                <button id="start_stop" class="btn btn-lg btn-primary">START</button>
+            </div>
+        </div>
+        <script>
+            // ゼロを追加する
+            var addZero = function (value) {
+                if (value < 10) {
+                    value = '0' + value;
+                }
+                return value;
+            };
+
+            var now = new Date();           // Dateオブジェクトのインスタンスを作る
+            var seconds = now.getSeconds(); // 秒を取得する
+            seconds = addZero(seconds);     // addZeroファンクションを利用
+
+            var minutes = now.getMinutes();
+            minutes = addZero(minutes);     // addZeroファンクションを利用
+
+            var hours = now.getHours();
+            hours = addZero(hours);         // addZeroファンクションを利用
+
+            document.getElementById('timer').innerHTML = 
+                hours + ' : ' + minutes + ' : ' + seconds;
+            //document.getElementById('timer').remove();
+        </script>
+    </body>
+</html>
